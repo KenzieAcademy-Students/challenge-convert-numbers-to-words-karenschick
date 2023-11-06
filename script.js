@@ -1,12 +1,5 @@
 // Your code here
-let inputNumber = document.getElementById("inputNumber");
-let convertButton = document.getElementById("convertButton");
-let conversionResultsDiv = document.getElementById("conversionResults");
-
-convertButton.addEventListener("click", inputNumberEvent);
-
-const underTen = [
-  "",
+const ones = [
   "one",
   "two",
   "three",
@@ -16,8 +9,7 @@ const underTen = [
   "seven",
   "eight",
   "nine",
-];
-const teens = [
+  "ten",
   "eleven",
   "twelve",
   "thirteen",
@@ -30,7 +22,7 @@ const teens = [
 ];
 const tens = [
   "",
-  "ten",
+  "",
   "twenty",
   "thirty",
   "forty",
@@ -41,30 +33,25 @@ const tens = [
   "ninety",
 ];
 
-let inputedNumber = ""
-
-function inputNumberEvent(){
- conversionResultsDiv.textContent = ""
- inputedNumber = inputNumber.value
- renderConvertsionResults()
- inputNumber.value = ""
-}
-
 function convertNumbersToWords(number) {
-  if (number >= 1 && number <= 100) {
-    if (number === 100) {
-      return "one hundred";
-    } else if (number >= 11 && number <= 19) {
-      return teens[number - 11];
-    } else {
-      let ten = Math.floor(number / 10);
-      let remainder = number % 10;
-      return tens[ten] + (remainder ? ` ${underTen[remainder]}` : "");
-    }
+  if (number === 100) return "one hundred";
+  if (number < 20) {
+    return ones[number - 1];
   }
-  return "out of range";
+  if (number < 100) {
+    let ten = Math.floor(number / 10);
+    let remainder = number % 10;
+    return tens[ten] + (remainder ? `-${ones[remainder - 1]}` : "");
+  }
 }
+const convertedWordsDiv = document.getElementById("converted-words");
 
-let renderConvertsionResults = function(){
-conversionResultsDiv.textContent = `${(convertNumbersToWords(inputedNumber))}`;
+const convertedWords = [];
+
+for (let i = 1; i <= 100; i++) {
+  convertedWords.push(convertNumbersToWords(i));
 }
+const converedWithComma = convertedWords.join(", ");
+const p = document.createElement("p");
+p.textContent = converedWithComma;
+convertedWordsDiv.appendChild(p);
