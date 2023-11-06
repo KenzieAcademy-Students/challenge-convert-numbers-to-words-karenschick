@@ -1,32 +1,36 @@
 # Kenzie Academy Challenge: Convert Numbers to Words
-##Questions
-
 
 ## Project Plan
 
-1. create arrays of word values of number
- -ones for less than 20
- -tens for tens
+1. Create arrays to store number words
+ -array named ones for numbers less than 20
+ -array named tens for tens units
 
-2. create convertNumbersToWords with parameter of number
+2. Create convertNumbersToWords with parameter of number
  -if number equals 100 
-  -return one hundred
+  -return `"one hundred"`
  -if number is less than 20
   - return ones with index of number -1
  -if number less than 100
   -create variable called ten and assign it to method Math.Floor calling number divided by 10
-  -create variable called remainder and assign it to a value determined using a oprator with dividend as number and divisor of 10
+  -create variable called remainder and assign it to a value determined using operator with dividend as number and divisor of 10
   -return tens with index of ten `+` a conditional of `(remainder ? `-${ones[remainder - 1]}` : "")`
 
- 3. display convertedNumbers 1-100 
-  -
+ 3. Display convertedNumbers 1-100 
+  -grab converted-words div using getElementbyId and assign to covertedWordsDiv variable
+  -create empty array named convertedWords
+  -create a for loop 
+   -where variable i is initialized to 1, checks that i is less than 100, and increments by 1 after each pass through the loop.
+   -push convertNumbersToWords calling i to convertedWords array
+  -create variable called convertedWithComma that joins convertedWords array with a comma
+  -createElement "p" and assign to variable p
+  -assign convertedWithComma array to p.textContent
+  -appendChild p to convertedWordsDiv
 
 
 ## Reflection
 
-What different approaches or techniques did you consider when planning your implementation? What were the advantages and disadvantages of those alternatives?
-
-tried this, it did not work
+I tried the following approach, it did not work. I was unable to get the number ten to display properly. It could be that my conditionals for teens were incorrect.
 
 1. create arrays of word values of number
  -underTen array for numbers less than 10 
@@ -41,4 +45,3 @@ tried this, it did not work
      -create variable called ten and assign it to method Math.Floor calling number divided by 10
      -create variable called remainder and assign it to a value determined using a oprator with dividend as number and divisor of 10
      -return tens with index of ten plus a conditional of `(remainder ? `-${underTen[remainder]}` : "")`
-_(Put your reflection answer here.)_
