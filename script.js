@@ -1,4 +1,3 @@
-// Your code here
 const ones = [
   "one",
   "two",
@@ -20,6 +19,7 @@ const ones = [
   "eighteen",
   "nineteen",
 ];
+
 const tens = [
   "",
   "",
@@ -40,10 +40,11 @@ function convertNumbersToWords(number) {
   }
   if (number < 100) {
     let ten = Math.floor(number / 10);
-    let remainder = number % 10;
-    return tens[ten] + (remainder ? `-${ones[remainder - 1]}` : "");
+    let tenRemainder = number % 10;
+    return tens[ten] + (tenRemainder ? `-${ones[tenRemainder - 1]}` : "");
   }
 }
+
 const convertedWordsDiv = document.getElementById("converted-words");
 
 const convertedWords = [];
@@ -51,7 +52,8 @@ const convertedWords = [];
 for (let i = 1; i <= 100; i++) {
   convertedWords.push(convertNumbersToWords(i));
 }
-const converedWithComma = convertedWords.join(", ");
+
+const convertedWithComma = convertedWords.join(", ");
 const p = document.createElement("p");
-p.textContent = converedWithComma;
+p.textContent = convertedWithComma;
 convertedWordsDiv.appendChild(p);
