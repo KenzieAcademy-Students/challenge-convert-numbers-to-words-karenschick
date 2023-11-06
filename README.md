@@ -1,12 +1,26 @@
 # Kenzie Academy Challenge: Convert Numbers to Words
 
-Follow the instructions provided on `kenzie.instructure` for this challenge. The `script.js` file is a placeholder. Feel free to rename it or add additional files to the project.
-
-Customize this README.md however you want to turn it into documentation for your project (including deleting these opening paragraphs). The only required sections are the **Project Plan** and **Reflection** below. Be sure to use proper Markdown syntax in this file (here's a [cheatsheet PDF](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf) of the basic syntax).
+##Questions
+-how do i get rid of "-" in numbers less than 10?
 
 ## Project Plan
 
-_(Put your project plan here. It could be pseudocode, an outline-style development plan, etc. But whatever form you choose, it should be detailed enough that another developer could feasibly use it to implement your solution.)_
+1. create arrays of word values of number
+ -underTen array for numbers less than 10 
+ -teens for numbers 11-19
+ -tens for tens
+
+2. create convertNumbersToWords with parameter of number
+ -if number is greater than or equal to 1 and less than or equal to 100 handle the conditionals
+   -if number equals 100 return one hundred
+   -if number is between or equal to 11 and 19 return teens with index of number minus 11
+   -otherwise 
+     -create variable called ten and assign it to method Math.Floor calling number divided by 10
+     -create variable called remainder and assign it to a value determined using a oprator with dividend as number and divisor of 10
+     -return tens with index of ten plus a conditional of `(remainder ? `-${underTen[remainder]}` : "")`
+
+ -if number is less than one or greater than hundred return out of range message
+
 
 ## Reflection
 
