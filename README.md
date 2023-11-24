@@ -1,5 +1,31 @@
 # Kenzie Academy Challenge: Convert Numbers to Words
 
+## Questions?
+why is there a weird space around these certain converted numbers?
+47282
+47945
+48648
+49356
+50059 and 50060
+50835 and 50836
+51579
+52312
+53002
+54413
+55127
+55807
+56534
+57254
+58620
+59328
+60006
+75521
+74834
+74181
+73505
+72825
+
+
 ## Project Plan 
 
 1. Create arrays to store number words
@@ -9,10 +35,6 @@
 2. Create convertNumbersToWords with parameter of number
  -if number equals 100000 
   -return `"one hundred thousand"`
-
-
-
-
  -if number is less than 20
   - return ones with index of number -1
  -if number less than 100
@@ -40,7 +62,19 @@
   -appendChild p to convertedWordsDiv
 
 
-## Reflection
+## Reflection-Intermediate
+
+I could create separate functions for getting the ones and tens units and then use these helper functions such as:
+  const getOnes = num => (num > 0) ? `${ones[num - 1]}` : "";
+  const getTens = num => (num > 0) ? `${tens[Math.floor(num / 10)]}${getOnes(num % 10)}` : "";
+if (number < 1000) {
+    const hundred = Math.floor(number / 100);
+    const remainder = number % 100;
+    return `${ones[hundred - 1]} hundred${remainder ? ` and ${getTens(remainder)}` : ""}`;
+  }
+This would make the code more modular. But I chose to keep it as is because I feel that my future self can better understand the flow of the function.
+
+## Reflection-Basic
 
 I tried the following approach, it did not work. I was unable to get the number ten to display properly. It could be that my conditionals for teens were incorrect.
 
