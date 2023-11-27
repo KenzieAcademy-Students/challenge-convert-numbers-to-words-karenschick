@@ -68,6 +68,7 @@ for (let i = 1; i <= 100000; i++) {
 }
 
 const convertedWithComma = convertedWords.join(", ");
-const p = document.createElement("p");
-p.textContent = convertedWithComma;
-convertedWordsDiv.appendChild(p);
+const span = document.createElement("span");
+span.textContent = convertedWithComma;
+
+convertedWordsDiv.appendChild(span);

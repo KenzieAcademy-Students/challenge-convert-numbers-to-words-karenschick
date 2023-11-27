@@ -1,31 +1,5 @@
 # Kenzie Academy Challenge: Convert Numbers to Words
 
-## Questions?
-why is there a weird space around these certain converted numbers?
-47282
-47945
-48648
-49356
-50059 and 50060
-50835 and 50836
-51579
-52312
-53002
-54413
-55127
-55807
-56534
-57254
-58620
-59328
-60006
-75521
-74834
-74181
-73505
-72825
-
-
 ## Project Plan 
 
 1. Create arrays to store number words
@@ -91,3 +65,45 @@ I tried the following approach, it did not work. I was unable to get the number 
      -create variable called ten and assign it to method Math.Floor calling number divided by 10
      -create variable called remainder and assign it to a value determined using a oprator with dividend as number and divisor of 10
      -return tens with index of ten plus a conditional of `(remainder ? `-${underTen[remainder]}` : "")`
+
+
+
+## Questions?
+fix spaces between numbers. put conditional for and word before last two digits. forty-three thousand and fifty-one?
+why is there a weird space around these certain converted numbers?
+10888
+18394
+19140
+31131
+31812
+33883
+34582
+35284
+43046
+43734
+44442
+45155
+45836
+46563
+47282
+47945
+48648
+49356
+50059 and 50060
+50835 and 50836
+51579
+52312
+53002
+54413
+55127
+55807
+56534
+57254
+58620
+59328
+60006
+75521
+74834
+74181
+73505
+72825
