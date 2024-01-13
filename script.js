@@ -61,9 +61,11 @@ function convertNumbersToWords(number) {
   }
   if (number < 1000000) {
     let hundredThousand = Math.floor(number / 1000);
-    let remainder = number % 1000; 
+    let remainder = number % 1000;
 
-    return `${convertNumbersToWords(hundredThousand)} thousand${remainder ? ` ${convertNumbersToWords(remainder)}` : ""}`;
+    return `${convertNumbersToWords(hundredThousand)} thousand${
+      remainder ? ` ${convertNumbersToWords(remainder)}` : ""
+    }`;
   }
 }
 
@@ -93,14 +95,12 @@ inputField.placeholder = "Enter a number";
 const convertButton = document.createElement("button");
 convertButton.textContent = "Convert";
 
-convertWordsDiv.appendChild(inputField);
-convertWordsDiv.appendChild(convertButton);
-
 const resultDiv = document.createElement("div");
 resultDiv.id = "result";
 
+convertWordsDiv.appendChild(inputField);
+convertWordsDiv.appendChild(convertButton);
 convertWordsDiv.appendChild(resultDiv);
-
 
 convertButton.addEventListener("click", function () {
   const number = parseInt(document.getElementById("numberInput").value, 10);
