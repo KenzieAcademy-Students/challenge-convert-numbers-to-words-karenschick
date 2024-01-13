@@ -7,8 +7,8 @@
  -array named tens for tens units
 
 2. Create convertNumbersToWords with parameter of number
- -if number equals 100000 
-  -return `"one hundred thousand"`
+ -if number equals 1000000 
+  -return `"one million"`
  -if number is less than 20
   - return ones with index of number -1
  -if number less than 100
@@ -23,8 +23,12 @@
   -create variable called thousand and assign it to method Math.Floor calling number divided by 1000
   -create variable called thousandRemainder and assign it to a value determined using operator with dividend as number and divisor of 1000
   -return convertNumberToWords calling thousand `+` string " thousand" `+ `condtional for diplay of `(thousandRemainder ? ` ${convertNumbersToWords(thousandRemainder)}` : "")`
+ -if number is less than 1000000
+  -create variable called hunderedThousand and assign it to method Math.Floor calling number divided by 10000
+  -create variable called remainder and assign it to a value determined using operator with dividend as number and divisor of 1000
+  -return convertNumberToWords calling hundredthousand and `+` string " thousand" `+` condtional for diplay of `${remainder ? ${convertNumbersToWords(remainder)}` : "")`
 
- 3. Display convertedNumbers 1-100 
+ 3. Display convertedNumbers  
   -grab converted-words div using getElementbyId and assign to covertedWordsDiv variable
   -create empty array named convertedWords
   -create a for loop 
@@ -34,6 +38,31 @@
   -createElement "p" and assign to variable p
   -assign convertedWithComma array to p.textContent
   -appendChild p to convertedWordsDiv
+
+4. display input field and convert button
+ -grab convert-word div using getElementById and assign to converWordsDiv variable
+ -create input element assign to variable inputField. Assign number as type, id as numberInput, min as 1 max as 100000 and placeholder as Enter a Number
+ -create a button assign to variable convertButton with button text of Convert
+ -append inputField to convertWordsDiv
+ -append convertButton to convertWordsDiv
+ -create div element and assign to variable resultDiv with id of result
+ -append resultDiv to convertWordsDiv
+ -create event listener for click event to convertButton
+  -retirve value from input field with id numberInput
+  -get value of input as a string
+  -use parseInt to convert string value to integer with base-10
+  -use if/else conditional to see if number is in range
+   -if block
+    -call function converNumbertoWords with parsednumber
+    -store result in variable words
+    -update textConent of resultDiv with words
+   -else block
+    -if input number not in range display message for user to enter number in range 
+
+
+## Reflection-Advanced
+
+Another approach to converting numbers 100001 to 1000000 is to use a loop for each digit place converting it to words. I chose not to to this as it would render slowly. Iterating through each digit for larger numbers would result in more computational steps, conditional checks and string operations.  Whereas my method directly splits the number into larger chunks which reduces the number of interations and recursive calls.
 
 
 ## Reflection-Intermediate
@@ -66,44 +95,3 @@ I tried the following approach, it did not work. I was unable to get the number 
      -create variable called remainder and assign it to a value determined using a oprator with dividend as number and divisor of 10
      -return tens with index of ten plus a conditional of `(remainder ? `-${underTen[remainder]}` : "")`
 
-
-
-## Questions?
-fix spaces between numbers. put conditional for and word before last two digits. forty-three thousand and fifty-one?
-why is there a weird space around these certain converted numbers?
-10888
-18394
-19140
-31131
-31812
-33883
-34582
-35284
-43046
-43734
-44442
-45155
-45836
-46563
-47282
-47945
-48648
-49356
-50059 and 50060
-50835 and 50836
-51579
-52312
-53002
-54413
-55127
-55807
-56534
-57254
-58620
-59328
-60006
-75521
-74834
-74181
-73505
-72825
