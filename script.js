@@ -60,13 +60,10 @@ function convertNumbersToWords(number) {
     }`;
   }
   if (number < 1000000) {
-    let hundredThousand = Math.floor(number / 100000);
-    let hundredThousandRemainder = number % 100000;
-    return `${convertNumbersToWords(hundredThousand)} hundred${
-      hundredThousandRemainder
-        ? ` and ${convertNumbersToWords(hundredThousandRemainder)}`
-        : ""
-    } thousand`;
+    let hundredThousand = Math.floor(number / 1000);
+    let remainder = number % 1000; 
+
+    return `${convertNumbersToWords(hundredThousand)} thousand${remainder ? ` ${convertNumbersToWords(remainder)}` : ""}`;
   }
 }
 
@@ -84,22 +81,26 @@ span.textContent = convertedWithComma;
 
 convertedWordsDiv.appendChild(span);
 
+const convertWordsDiv = document.getElementById("convert-words");
+
 const inputField = document.createElement("input");
 inputField.type = "number";
 inputField.id = "numberInput";
 inputField.min = 1;
 inputField.max = 1000000;
-inputField.placeholder = "Enter a number between 1 and 1,000,000";
+inputField.placeholder = "Enter a number";
 
 const convertButton = document.createElement("button");
 convertButton.textContent = "Convert";
 
+convertWordsDiv.appendChild(inputField);
+convertWordsDiv.appendChild(convertButton);
+
 const resultDiv = document.createElement("div");
 resultDiv.id = "result";
 
-document.body.appendChild(resultDiv);
-document.body.appendChild(inputField);
-document.body.appendChild(convertButton);
+convertWordsDiv.appendChild(resultDiv);
+
 
 convertButton.addEventListener("click", function () {
   const number = parseInt(document.getElementById("numberInput").value, 10);
