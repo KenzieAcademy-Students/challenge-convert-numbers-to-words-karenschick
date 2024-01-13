@@ -1,6 +1,20 @@
 /* Write your CSS here */
-#converted-words{
+body {
+    text-align: center;
     margin: 20px;
     padding: 0;
-    
+    max-width: 80%;
+}
+
+#numberInput {
+    width: 300px; /* Adjust the width as needed */
+    margin-right: 10px; /* Space between input field and button */
+}
+
+button {
+    cursor: pointer; /* Optional: improves user experience */
+}
+
+#result {
+    margin-top: 20px; /* Space above the result div */
 }
