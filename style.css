@@ -7,14 +7,14 @@ body {
 }
 
 #numberInput {
-    width: 300px; /* Adjust the width as needed */
-    margin-right: 10px; /* Space between input field and button */
+    width: 300px; 
+    margin-right: 10px; 
 }
 
 button {
-    cursor: pointer; /* Optional: improves user experience */
+    cursor: pointer; 
 }
 
 #result {
-    margin-top: 20px; /* Space above the result div */
+    margin-top: 50px; 
 }
