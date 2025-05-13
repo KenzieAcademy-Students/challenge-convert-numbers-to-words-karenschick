@@ -1,97 +1,106 @@
-# Kenzie Academy Challenge: Convert Numbers to Words
+# 🧩 Kenzie Academy Challenge: Anagrams
 
-## Project Plan 
+A small project to find anagrams of an inputted word using vanilla JavaScript and DOM manipulation.
 
-1. Create arrays to store number words
- -array named ones for numbers less than 20
- -array named tens for tens units
+---
 
-2. Create convertNumbersToWords with parameter of number
- -if number equals 1000000 
-  -return `"one million"`
- -if number is less than 20
-  - return ones with index of number -1
- -if number less than 100
-  -create variable called ten and assign it to method Math.Floor calling number divided by 10
-  -create variable called tenRemainder and assign it to a value determined using operator with dividend as number and divisor of 10
-  -return tens with index of ten `+` a conditional of `(remainder ? `-${ones[remainder - 1]}` : "")`
- -if number is less than 1000
-  -create variable called hundred and assign it to method Math.Floor calling number divided by 100
-  -create variable called hundredRemainder and assign it to a value determined using operator with dividend as number and divisor of 100
-  -return ones with index of hundred minus one `+` string " hundred" `+`condtional for diplay of `(hundredRemainder ? ` and ${convertNumbersToWords(hundredRemainder)}` : "")`
- -if number is less than 100000
-  -create variable called thousand and assign it to method Math.Floor calling number divided by 1000
-  -create variable called thousandRemainder and assign it to a value determined using operator with dividend as number and divisor of 1000
-  -return convertNumberToWords calling thousand `+` string " thousand" `+ `condtional for diplay of `(thousandRemainder ? ` ${convertNumbersToWords(thousandRemainder)}` : "")`
- -if number is less than 1000000
-  -create variable called hunderedThousand and assign it to method Math.Floor calling number divided by 10000
-  -create variable called remainder and assign it to a value determined using operator with dividend as number and divisor of 1000
-  -return convertNumberToWords calling hundredthousand and `+` string " thousand" `+` condtional for diplay of `${remainder ? ${convertNumbersToWords(remainder)}` : "")`
+## 🛠️ Project Plan
 
- 3. Display convertedNumbers  
-  -grab converted-words div using getElementbyId and assign to covertedWordsDiv variable
-  -create empty array named convertedWords
-  -create a for loop 
-   -where variable i is initialized to 1, checks that i is less than 100, and increments by 1 after each pass through the loop.
-   -push convertNumbersToWords calling i to convertedWords array
-  -create variable called convertedWithComma that joins convertedWords array with a comma
-  -createElement "p" and assign to variable p
-  -assign convertedWithComma array to p.textContent
-  -appendChild p to convertedWordsDiv
+### 1. HTML Structure
 
-4. display input field and convert button
- -grab convert-word div using getElementById and assign to converWordsDiv variable
- -create input element assign to variable inputField. Assign number as type, id as numberInput, min as 1 max as 100000 and placeholder as Enter a Number
- -create a button assign to variable convertButton with button text of Convert
- -append inputField to convertWordsDiv
- -append convertButton to convertWordsDiv
- -create div element and assign to variable resultDiv with id of result
- -append resultDiv to convertWordsDiv
- -create event listener for click event to convertButton
-  -retirve value from input field with id numberInput
-  -get value of input as a string
-  -use parseInt to convert string value to integer with base-10
-  -use if/else conditional to see if number is in range
-   -if block
-    -call function converNumbertoWords with parsednumber
-    -store result in variable words
-    -update textConent of resultDiv with words
-   -else block
-    -if input number not in range display message for user to enter number in range 
+- An `<input>` with:
+  - `id="searchAnagramInput"`
+  - `type="text"`
+  - `placeholder="Enter a word"`
+- A `<button>` with:
+  - `id="searchAnagramButton"`
+  - Text: "Search"
+- A `<div>` with:
+  - `id="anagramResults"`
 
+### 2. Global Variables
 
-## Reflection-Advanced
+- Use `document.getElementById()` to select:
+  - The input field (`searchAnagramInput`)
+  - The results container (`anagramResultsDiv`)
 
-Another approach to converting numbers 100001 to 1000000 is to use a loop for each digit place converting it to words. I chose not to to this as it would render slowly. Iterating through each digit for larger numbers would result in more computational steps, conditional checks and string operations.  Whereas my method directly splits the number into larger chunks which reduces the number of interations and recursive calls.
+### 3. Button Event Handler
 
+- Clear previous results: `anagramResultsDiv.textContent = ""`
+- Get the input value: `inputWord = searchAnagramInput.value`
+- Call `renderAnagramResults(inputWord)`
+- Clear input field: `searchAnagramInput.value = ""`
 
-## Reflection-Intermediate
+### 4. Helper Function: `sortLetters(word)`
 
-I could create separate functions for getting the ones and tens units and then use these helper functions such as:
-  const getOnes = num => (num > 0) ? `${ones[num - 1]}` : "";
-  const getTens = num => (num > 0) ? `${tens[Math.floor(num / 10)]}${getOnes(num % 10)}` : "";
-if (number < 1000) {
-    const hundred = Math.floor(number / 100);
-    const remainder = number % 100;
-    return `${ones[hundred - 1]} hundred${remainder ? ` and ${getTens(remainder)}` : ""}`;
-  }
-This would make the code more modular. But I chose to keep it as is because I feel that my future self can better understand the flow of the function.
+- Split the string into an array of letters
+- Sort the letters alphabetically
+- Join the array back into a string
+- Return the result
 
-## Reflection-Basic
+### 5. Core Logic: `findAnagrams(inputWord, wordsArray)`
 
-I tried the following approach, it did not work. I was unable to get the number ten to display properly. It could be that my conditionals for teens were incorrect.
+- Sort `inputWord` using `sortLetters()`
+- Use `filter()` to compare each word:
+  - Sort each candidate word
+  - Check if sorted value equals sorted `inputWord`
+  - Exclude the original `inputWord` itself
+- Return results as a comma-separated string
 
-1. create arrays of word values of number
- -underTen array for numbers less than 10 
- -teens for numbers 11-19
- -tens for tens
+### 6. Displaying Results: `renderAnagramResults(inputWord)`
 
-2. create convertNumbersToWords with parameter of number
- -if number is greater than or equal to 1 and less than or equal to 100 handle the conditionals
-   -if number equals 100 return one hundred
-   -if number is between or equal to 11 and 19 return teens with index of number minus 11
-   -otherwise 
-     -create variable called ten and assign it to method Math.Floor calling number divided by 10
-     -create variable called remainder and assign it to a value determined using a oprator with dividend as number and divisor of 10
-     -return tens with index of ten plus a conditional of `(remainder ? `-${underTen[remainder]}` : "")`
+- Call `findAnagrams()` with `inputWord` and word list
+- Update `anagramResultsDiv.textContent` with:
+  - `Anagrams of "listen": silent, enlist, tinsel`
+  - Or show a “no matches found” message
 
+---
+
+## 💭 Reflection
+
+I considered removing the search button for a smoother UX (e.g., pressing Enter), but wasn’t sure how best to clear the input/results cleanly without it.
+
+I also attempted a more complex approach using `.includes()` to match characters but ran into logic issues handling duplicate letters.
+
+---
+
+## 📚 Sources
+
+- https://medium.com/@jenniferpazos/codewars-solving-an-easy-javascript-kata-edf2e5d6fd21
+
+---
+
+## ❓ Questions
+
+- **Use `let` or `const` for `sortLetters`?**  
+  ➤ Use `const` — the function reference doesn’t need to change.
+
+- **`innerHTML` or `textContent`?**  
+  ➤ Use `textContent` for plain text results.
+
+- **Are button and input set up properly in HTML?**  
+  ➤ Yep!
+
+- **How do I not include input word in anagram results?**  
+  ➤ Filter out words that exactly match the input.
+
+- **What is the correct style for README writing?**  
+  ➤ Structured, clear, and sectioned — like this.
+
+- **Should I have comments explaining my code?**  
+  ➤ Yes — brief, helpful comments improve readability.
+
+- **How do I create a list for anagram results?**  
+  ➤ Use `<ul>` and `<li>` in HTML or generate them dynamically with JS.
+
+- **Do I need `inputWord` declared globally?**  
+  ➤ No — declare it within your event handler for cleaner scope.
+
+---
+
+## 🌟 Possible Improvement Ideas
+
+- Display results as a list (`<ul><li>word</li></ul>`)
+- Add a heading that includes the input word
+- Show a message when no matches are found
+- Style the interface to make it visually appealing
